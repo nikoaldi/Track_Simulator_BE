@@ -1,4 +1,4 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 
 import jakarta.inject.Inject;

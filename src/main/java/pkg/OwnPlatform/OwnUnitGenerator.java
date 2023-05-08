@@ -1,23 +1,14 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 import io.quarkus.scheduler.Scheduled;
-import jakarta.ejb.Schedule;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Random;
 
 //@Path("/coba")
 //@Produces(MediaType.APPLICATION_JSON)

@@ -1,4 +1,4 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;

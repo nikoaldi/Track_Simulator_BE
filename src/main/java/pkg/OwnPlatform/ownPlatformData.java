@@ -1,4 +1,4 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 public class ownPlatformData {
     private Integer trackNumber;

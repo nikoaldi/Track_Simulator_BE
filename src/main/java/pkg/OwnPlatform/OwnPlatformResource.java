@@ -1,4 +1,4 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 
 import jakarta.inject.Inject;
@@ -12,7 +12,6 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
 import java.net.URI;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Path("/ownplatform")

@@ -1,4 +1,4 @@
-package org.acme;
+package pkg.OwnPlatform;
 
 import io.quarkus.kafka.client.serialization.ObjectMapperDeserializer;
 
