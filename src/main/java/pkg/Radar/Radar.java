@@ -16,12 +16,14 @@ public class Radar {
 
     private String status;
     private String lastSend;
-    private String count;
+    private Integer count;
     private String time;
+    private String trackInput;
 
     private String trackMode;
     private String environment;
     public double courseRangeMin;
+    private double course;
     public double courseRangeMax;
     public double courseIncrement;
     private float latitude;
@@ -32,6 +34,7 @@ public class Radar {
 
 
     private String startTime;
+    private double speed;
     public double speedRangeMin;
     public double speedRangeMax;
     public double speedIncrement;
@@ -49,8 +52,29 @@ public class Radar {
     private int mode5code;
 
 
+    public String getTrackInput() {
+        return trackInput;
+    }
 
+    public void setTrackInput(String trackInput) {
+        this.trackInput = trackInput;
+    }
 
+    public double getCourse() {
+        return course;
+    }
+
+    public void setCourse(double course) {
+        this.course = course;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 
     public Long getId() {
         return id;
@@ -76,11 +100,11 @@ public class Radar {
         this.lastSend = lastSend;
     }
 
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
