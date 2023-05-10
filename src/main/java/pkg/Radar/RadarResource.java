@@ -1,5 +1,6 @@
 package pkg.Radar;
 
+import io.quarkus.scheduler.Scheduled;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -54,7 +55,7 @@ public class RadarResource {
     }
 
     @POST
-    @Path("/sendonly")
+    @Path("/single")
     @Operation(
             operationId = "inputDataRadar",
             summary = "create new Data Radar",
@@ -155,6 +156,9 @@ public class RadarResource {
         radar.setAltitudeRangeMin(20);
         radarRepository.persist(radar);
     }
+
+
+
 
 
 
