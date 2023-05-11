@@ -145,6 +145,24 @@ public class RadarResource {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+    @DELETE
+    @Operation(
+            operationId = "DeletePlot",
+            summary = "Delete  Plot",
+            description = "Delete Plot from  inside the list"
+    )
+    @APIResponse(
+            responseCode = "201",
+            description = "Plot Deleted",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    @Path("{id}")
+    @Transactional
+    public Response deleteById(@PathParam("id") Long id){
+        boolean deleted = radarRepository.deleteById(id);
+        return deleted ? Response.noContent().build() : Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
 
 
     public void insertMultiManual(Radar radar){
