@@ -32,10 +32,19 @@ public class RadarResource {
     public static List<Radar> radars = new ArrayList<>();
     public static List<Radar> radars1 = new ArrayList<>();
 
+    public static List<Long> listId = new ArrayList<>();
+
+
     @GET
     @Path("/test")
     public List<Radar> tampilCount(){
         return radars1;
+    }
+
+    @GET
+    @Path("/id")
+    public List<Long> tampilListId(){
+        return listId;
     }
 
     @GET
@@ -52,6 +61,24 @@ public class RadarResource {
     public Response getAll(){
         radars = radarRepository.listAll();
         return Response.ok(radars).build();
+    }
+
+    @GET
+    @Operation(
+            operationId = "getById",
+            summary = "get Plot By id",
+            description = "method to get plot by id"
+    )
+    @APIResponse(
+            responseCode = "200",
+            description = "Operation Complited",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    @Path("{id}")
+    public Response getById(@PathParam("id") Long id){
+        return radarRepository.findByIdOptional(id)
+                .map(radar -> Response.ok(radar).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @POST
@@ -145,7 +172,8 @@ public class RadarResource {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
-    @DELETE
+
+    @POST
     @Operation(
             operationId = "DeletePlot",
             summary = "Delete  Plot",
@@ -156,11 +184,41 @@ public class RadarResource {
             description = "Plot Deleted",
             content = @Content(mediaType = MediaType.APPLICATION_JSON)
     )
-    @Path("{id}")
+    @Path("/inputdeleteid")
     @Transactional
-    public Response deleteById(@PathParam("id") Long id){
-        boolean deleted = radarRepository.deleteById(id);
-        return deleted ? Response.noContent().build() : Response.status(Response.Status.BAD_REQUEST).build();
+    public Response inputIdDelete(Radar radar){
+        boolean input = listId.add(radar.getId());
+        return input ? Response.noContent().build() : Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @DELETE
+    @Operation(
+            operationId = "deleteTrackRadar",
+            summary = "Delete Track Radar Message",
+            description = "Delete  Track Radar Message from  database"
+    )
+    @APIResponse(
+            responseCode = "201",
+            description = "Radar Track Deleted",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    @Transactional
+    public Response deleteTrackRadar(String radar){
+        try {
+            for (int i =0; i < listId.size(); i++){
+                boolean deleted = radarRepository.deleteById(listId.get(i));
+                if (deleted){
+                    listId.remove(listId.get(i));
+                }
+            }
+            if (listId.isEmpty()){
+                return Response.noContent().build();
+            } else {
+                return Response.status(Response.Status.BAD_REQUEST).build();
+            }
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
 
