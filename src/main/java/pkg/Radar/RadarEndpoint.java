@@ -105,10 +105,10 @@ public class RadarEndpoint {
             description = "Radar track sended",
             content = @Content(mediaType = MediaType.APPLICATION_JSON)
     )
-    @Path("/sendtrack")
     @Transactional
-    public void sendRadarTrack(Long[] id){
-        radarResource.sendRadarTrack(id);
+    @Path("/sendtrack")
+    public Response sendRadarTrack(Long[] id){
+        return Response.ok(radarResource.sendRadarTrack(id)).build();
     }
 
     // SAVE RADA TRACK
@@ -139,10 +139,12 @@ public class RadarEndpoint {
     }
 
 
-
-
-
-
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public Response updateById(@PathParam("id") Long id, Radar radar) {
+        return Response.ok(radarResource.updateRadarTrack(id,radar)).build();
+    }
 
 
 
